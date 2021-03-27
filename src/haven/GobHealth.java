@@ -53,8 +53,8 @@ public class GobHealth extends GAttrib implements Gob.SetupMod {
 	return(fx);
     }
     public BufferedImage text() {
-	if(hp <= gobhp.length && hp > 0) {
-	    return gobhp[(int) (hp - 1)];
+	if(hp * 4f <= gobhp.length && hp > 0) {
+	    return gobhp[(int) ((hp * 4f) - 1)];
 	}
 	return null;
     }
