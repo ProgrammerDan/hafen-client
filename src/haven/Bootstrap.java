@@ -195,7 +195,7 @@ public class Bootstrap implements UI.Receiver, UI.Runner {
 		    String hex = Utils.byte2hex(token);
 		    setpref("savedtoken-" + acctname, hex);
 		    setpref("tokenname",  acctname);
-		    AccountList.storeAccount("savedtoken-" + acctname, hex);
+		    AccountList.storeAccount(acctname, hex);
 
 		} catch(IOException e) {
 		    ui.uimsg(1, "error", e.getMessage());
