@@ -1,3 +1,7 @@
+$size[14]{$u{Update for 27.03.21:}
+  * merged loftar's changes
+  * fixed a Java 9 regression around ByteBuffer -- see https://github.com/apache/felix/pull/114
+
 $size[14]{$u{Update for 16.03.21:}
   * fixed combat damage display not working
  

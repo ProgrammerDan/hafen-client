@@ -324,7 +324,7 @@ public class RadarCFG {
 	public GroupCheck(Group group) {
 	    super(group.name);
 	    this.group = group;
-	    this.hitbox = true;
+	    //this.hitbox = true;
 	    this.a = group.show == null || group.show;
 	}
 
