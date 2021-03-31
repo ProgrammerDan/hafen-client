@@ -250,6 +250,47 @@ public class UI {
 	    bind(wdg, id);
 	    if(wdg instanceof Window) {
 		WindowDetector.detect((Window) wdg);
+	    } else if (wdg instanceof GItem && pwdg instanceof Inventory) {
+		GItem gitem = (GItem) wdg;
+		Inventory inv = (Inventory) pwdg;
+		String resname = null;
+		while (resname == null) {
+		    // xxx: this is bad juju
+		    try {
+			resname = gitem.resname();
+		    } catch (Loading l) {
+			Thread.sleep(0);
+		    }
+		}
+		StringBuilder sb = new StringBuilder("Adding a " + resname + " info: [" + ItemInfo.getCount(gitem.info()) + "] ");
+		if (this.gui.maininv == inv) {
+		    sb.append("to Main Inventory");
+		} else if (this.gui.beltinv == inv) {
+		    sb.append("to Belt Inventory");
+		}
+		System.out.println(sb);
+	    } else if (wdg instanceof GItem && pwdg instanceof Equipory) {
+		GItem gitem = (GItem) wdg;
+		String resname = null;
+		while (resname == null) {
+		    // xxx: this is bad juju
+		    try {
+			resname = gitem.resname();
+		    } catch (Loading l) {
+			Thread.sleep(0);
+		    }
+		}
+		StringBuilder sb = new StringBuilder("Adding a " + resname + " info: [" + ItemInfo.getCount(gitem.info()) + "] to Equipory at slots [");
+		for(Object parg : pargs) {
+		    if (parg instanceof Integer && ((Integer)parg < Equipory.SLOTS.values().length)) {
+			sb.append(Equipory.SLOTS.values()[ (Integer) parg ]).append(",");
+		    }
+		}
+		sb.append("] to Equipory");
+		System.out.println(sb);
+	    } else if (wdg instanceof GItem) {
+		System.out.println("Widget " + id + " (" + (wdg != null ? wdg.getClass().getCanonicalName() : "null") + ") added to parent " + parent +
+		    " (" + (pwdg != null ? pwdg.getClass().getCanonicalName() : "null") + ")");
 	    }
 	}
     }
