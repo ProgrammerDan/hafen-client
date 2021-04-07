@@ -83,6 +83,11 @@ public class ErrorHandler extends ThreadGroup {
 		    while((r = errors.poll()) != null) {
 			try {
 			    doreport(r);
+			} catch(UnknownHostException uhe) {
+			    uhe.printStackTrace();
+			    // Jorb and Loftars' server sometimes is slow to respond and generates
+			    // this exception, which ultimately kills the client. Usually happens
+			    // when a new resources spawns in (like a hostile) and leads to toon death
 			} catch(Exception e) {
 			    status.senderror(e);
 			}
