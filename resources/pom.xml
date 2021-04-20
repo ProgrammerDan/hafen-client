@@ -58,6 +58,7 @@
 		      <outputDirectory>../target</outputDirectory>
         </configuration>
       </plugin>
+
 		</plugins>
 
 		<resources>
@@ -79,9 +80,15 @@
 			<resource>
 				<directory>../etc</directory>
 				<includes>
-					<include>radar.xml</include>
+					<include>radar.json</include>
 					<include>gob_path.json</include>
 					<include>gob_radius.json</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>../target/classes</directory>
+				<includes>
+					<include>haven/res/**/**.class</include>
 				</includes>
 			</resource>
 		</resources>
