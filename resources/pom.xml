@@ -66,6 +66,9 @@
 				<directory>compiled</directory>
 			</resource>
 			<resource>
+				<directory>pre-compiled</directory>
+			</resource>
+			<resource>
 				<directory>.</directory>
 				<includes>
 					<include>item_data/**</include>
@@ -84,6 +87,8 @@
 					<include>autochoose.json</include>
 					<include>gob_path.json</include>
 					<include>gob_radius.json</include>
+					<include>tile_highlight.json</include>
+					<include>tile_names.json</include>
 				</includes>
 			</resource>
 			<resource>
