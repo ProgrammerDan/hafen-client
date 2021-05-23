@@ -211,7 +211,7 @@ public abstract class Light implements RenderTree.Node {
 	public static final Slot<CelShade> slot = new Slot<CelShade>(Slot.Type.DRAW, CelShade.class);
 
 	public CelShade(boolean dif, boolean spc) {
-	    shader = new Phong.CelShade(dif, spc);
+	    shader = null; //new Phong.CelShade(dif, spc);
 	}
 
 	private final ShaderMacro shader;
@@ -313,7 +313,9 @@ public abstract class Light implements RenderTree.Node {
 	}
 	
 	public Light make() {
-	    if(hatt) {
+	    return null;
+	    //return new DirLight(amb, dif, spc, dir);
+	    /*if(hatt) {
 		PosLight ret;
 		if(hexp)
 		    ret = new SpotLight(amb, dif, spc, Coord3f.o, dir, exp);
@@ -323,7 +325,7 @@ public abstract class Light implements RenderTree.Node {
 		return(ret);
 	    } else {
 		return(new DirLight(amb, dif, spc, dir));
-	    }
+	    }*/
 	}
 	
 	public void init() {

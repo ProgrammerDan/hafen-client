@@ -134,13 +134,33 @@ public abstract class Sprite implements RenderTree.Node {
     public static Sprite create(Owner owner, Resource res, Message sdt) {
 	{
 	    Factory f = res.getcode(Factory.class, false);
-	    if(f != null)
-		return(f.create(owner, res, sdt));
+	    if(f != null) {
+		//System.err.println("getcode " + f.getClass().getName() + owner + ":" + res + ":"  + sdt.toString());
+		Sprite ret = null;
+		try {
+			ret =(f.create(owner, res, sdt));
+		} catch (Exception e) {
+			if (e instanceof haven.MCache.LoadingMap) { 
+				throw e;
+			} else if (e instanceof haven.Session.LoadingIndir) {
+				throw e;
+			} else if (e instanceof haven.Resource.Loading) {
+				throw e;
+			} else if (!(e instanceof NullPointerException)) {
+				System.out.println("Encountered an error: " + e.getClass().getName()  + ": " + e.getMessage());
+			}
+			return(new Sprite(owner, res) {});
+		}
+		
+		return ret;
+	    }
 	}
 	for(Factory f : factories) {
 	    Sprite ret = f.create(owner, res, sdt);
-	    if(ret != null)
+	    if(ret != null) {
+		//System.err.println("factory " + f.getClass().getName() + ":" + owner + ":" + res + ":"  + ret.toString());
 		return(ret);
+	    }
 	}
 	/* XXXRENDER
 	throw(new ResourceException("Does not know how to draw resource " + res.name, res));

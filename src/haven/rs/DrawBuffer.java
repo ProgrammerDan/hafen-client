@@ -70,16 +70,17 @@ public class DrawBuffer implements Disposable {
 	RenderTree tree = new RenderTree();
 	TickList tick = new TickList();
 	DrawList rnd = env.drawlist();
-	Light.LightList lights = new Light.LightList();
+	//Light.LightList lights = new Light.LightList();
 	tree.add(tick, TickList.TickNode.class);
 	tree.add(rnd, Rendered.class);
 	RenderTree.Slot basic = tree.add((RenderTree.Node)null);
 	Pipe.Op bstate = Pipe.Op.compose(basic(),
-					 Homo3D.state, new States.Depthtest(States.Depthtest.Test.LE), new States.Facecull(), lights,
+					 Homo3D.state, new States.Depthtest(States.Depthtest.Test.LE), new States.Facecull(), // lights,
 					 state);
 	basic.ostate(bstate);
 	Loading.waitfor(() -> basic.add(n));
-	basic.ostate(Pipe.Op.compose(bstate, lights.compile()));
+	basic.ostate(bstate);
+	//basic.ostate(Pipe.Op.compose(bstate, lights.compile()));
 	Render cmd = env.render();
 	tick.tick(0);
 	tick.gtick(cmd);

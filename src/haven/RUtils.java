@@ -42,8 +42,14 @@ public class RUtils {
     public static Collection<Slot> multiadd(Collection<Slot> slots, Node node) {
 	Collection<Slot> added = new ArrayList<>(slots.size());
 	try {
-	    for(Slot slot : slots)
-		added.add(slot.add(node));
+	    for(Slot slot : slots) {
+		if (node.getClass().getName().contains("SpriteLite") || 
+				slot.getClass().getName().contains("SpriteLite")) {
+			System.err.println("Skipping SpriteLite");
+		} else {
+			added.add(slot.add(node));
+		}
+	    }
 	} catch(RuntimeException e) {
 	    for(Slot slot : added)
 		slot.remove();
