@@ -85,6 +85,7 @@
 				<includes>
 					<include>radar.json</include>
 					<include>autochoose.json</include>
+					<include>automark.json5</include>
 					<include>gob_path.json</include>
 					<include>gob_radius.json</include>
 					<include>tile_highlight.json</include>
